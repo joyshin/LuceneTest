@@ -3,6 +3,7 @@ package net.skcomms.joyshin.Lucene;
 import java.io.IOException;
 import java.io.StringReader;
 
+import org.apache.lucene.analysis.SimpleAnalyzer;
 import org.apache.lucene.analysis.StopAnalyzer;
 import org.apache.lucene.analysis.Token;
 import org.apache.lucene.analysis.TokenStream;
@@ -27,8 +28,9 @@ public class HelloLucene {
 	public static void main(String[] args) throws IOException, ParseException {
 	    // 0. Specify the analyzer for tokenizing text.
 	    //    The same analyzer should be used for indexing and searching
-	    //StandardAnalyzer analyzer = new StandardAnalyzer(Version.LUCENE_35);
-		StopAnalyzer analyzer = new StopAnalyzer(Version.LUCENE_35);
+	    StandardAnalyzer analyzer = new StandardAnalyzer(Version.LUCENE_35);
+		//StopAnalyzer analyzer = new StopAnalyzer(Version.LUCENE_35);
+		//SimpleAnalyzer analyzer = new SimpleAnalyzer(Version.LUCENE_35);  // lucene => Lucene for Dummies sk.com
 
 	    // 1. create the index
 	    Directory index = new RAMDirectory();
@@ -36,14 +38,14 @@ public class HelloLucene {
 	    IndexWriterConfig config = new IndexWriterConfig(Version.LUCENE_35, analyzer);
 
 	    IndexWriter w = new IndexWriter(index, config);
-	    addDoc(w, "Lucene in Action");
-	    addDoc(w, "Lucene for Dummies");
+	    addDoc(w, "Lu&cene in Action@sk.com");
+	    addDoc(w, "Lucene for Dummies sk.com");
 	    addDoc(w, "Managing Gigabytes");
 	    addDoc(w, "The Art of Computer Science");
 	    w.close();
 
 	    // 2. query
-	    String querystr = args.length > 0 ? args[0] : "art";
+	    String querystr = args.length > 0 ? args[0] : "lucene";
 
 	    // the "title" arg specifies the default field to use
 	    // when no field is explicitly specified in the query.
