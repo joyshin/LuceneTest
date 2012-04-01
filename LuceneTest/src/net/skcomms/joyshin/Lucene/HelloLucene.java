@@ -3,6 +3,7 @@ package net.skcomms.joyshin.Lucene;
 import java.io.IOException;
 import java.io.StringReader;
 
+import org.apache.lucene.analysis.StopAnalyzer;
 import org.apache.lucene.analysis.Token;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
@@ -26,7 +27,8 @@ public class HelloLucene {
 	public static void main(String[] args) throws IOException, ParseException {
 	    // 0. Specify the analyzer for tokenizing text.
 	    //    The same analyzer should be used for indexing and searching
-	    StandardAnalyzer analyzer = new StandardAnalyzer(Version.LUCENE_35);
+	    //StandardAnalyzer analyzer = new StandardAnalyzer(Version.LUCENE_35);
+		StopAnalyzer analyzer = new StopAnalyzer(Version.LUCENE_35);
 
 	    // 1. create the index
 	    Directory index = new RAMDirectory();
